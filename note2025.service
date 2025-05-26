@@ -1,0 +1,19 @@
+[Unit]
+Description=note2025
+After=network.target syslog.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=demo01
+ExecStart=/home/demo01/softwares/miniconda3/envs/note_2025/bin/python /home/demo01/d/development/note_2025/note_backend/note_python_backend/main.py
+WorkingDirectory=/home/demo01/d/development/note_2025/note_backend/note_python_backend
+Restart=on-failure
+SuccessExitStatus=0
+LimitNOFILE=65536
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=note2025
+
+[Install]
+WantedBy=multi-user.target

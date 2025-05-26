@@ -1,0 +1,11 @@
+__pycache__
+logs
+data
+delete
+note
+tests_data
+*.tar.gz
+*.png
+*.jpg
+*.mp4
+*.avi
