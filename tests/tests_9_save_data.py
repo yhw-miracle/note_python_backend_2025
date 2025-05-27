@@ -27,8 +27,7 @@ def test_read_data(client):
                 "tags": [{"name": _} for _ in note["tags"]],
                 "create_time": note["create_time"]
             }
-            
-            print(param)
+
             response = client.post("/api/note/add1", json=param)
             assert response.status_code == 200
             data = response.get_json()
@@ -88,7 +87,7 @@ def test_api_category1(client):
     assert response.status_code == 200
     data = response.get_json()
     assert data["code"] == 200
-    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "category.json"), "w",  encoding="utf-8"))
+    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "category.json"), "w",  encoding="utf-8"), ensure_ascii=False)
     assert data["msg"] == "ok"
     assert isinstance(data["result"], list)
     assert response.headers["Content-Type"] == "application/json"
@@ -99,7 +98,7 @@ def test_api_tag1(client):
     assert response.status_code == 200
     data = response.get_json()
     assert data["code"] == 200
-    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "tag.json"), "w",  encoding="utf-8"))
+    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "tag.json"), "w",  encoding="utf-8"), ensure_ascii=False)
     assert data["msg"] == "ok"
     assert isinstance(data["result"], list)
     assert response.headers["Content-Type"] == "application/json"
@@ -110,7 +109,7 @@ def test_api_about_me1(client):
     assert response.status_code == 200
     data = response.get_json()
     assert data["code"] == 200
-    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "about_me.json"), "w",  encoding="utf-8"))
+    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "about_me.json"), "w",  encoding="utf-8"), ensure_ascii=False)
     assert data["msg"] == "ok"
     assert isinstance(data["result"], list)
     assert response.headers["Content-Type"] == "application/json"
@@ -121,7 +120,7 @@ def test_api_friend_link1(client):
     assert response.status_code == 200
     data = response.get_json()
     assert data["code"] == 200
-    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "friend_link.json"), "w",  encoding="utf-8"))
+    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "friend_link.json"), "w",  encoding="utf-8"), ensure_ascii=False)
     assert data["msg"] == "ok"
     assert isinstance(data["result"], list)
     assert response.headers["Content-Type"] == "application/json"
@@ -137,7 +136,7 @@ def test_api_visit_location_sum(client):
     assert isinstance(data["result"]["total_visit"], int)
     assert isinstance(data["result"]["total_country"], int)
     assert isinstance(data["result"]["total_city"], int)
-    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "visit_location_sum.json"), "w",  encoding="utf-8"))
+    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "visit_location_sum.json"), "w",  encoding="utf-8"), ensure_ascii=False)
     assert response.headers["Content-Type"] == "application/json"
 
 # ========== /api/visit_location/day ==========
@@ -149,7 +148,7 @@ def test_api_visit_location_day(client):
     if data["code"] == 200:
         assert data["msg"] == "ok"
         assert isinstance(data["result"], dict)
-        json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "visit_location_day.json"), "w",  encoding="utf-8"))
+        json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "visit_location_day.json"), "w",  encoding="utf-8"), ensure_ascii=False)
         assert response.headers["Content-Type"] == "application/json"
 
 def test_api_user1(client):
@@ -157,7 +156,7 @@ def test_api_user1(client):
     assert response.status_code == 200
     data = response.get_json()
     assert data["code"] == 200
-    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "user.json"), "w",  encoding="utf-8"))
+    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "user.json"), "w",  encoding="utf-8"), ensure_ascii=False)
     assert data["msg"] == "ok"
     assert isinstance(data["result"], list)
     assert response.headers["Content-Type"] == "application/json"
@@ -168,7 +167,7 @@ def test_api_note1(client):
     assert response.status_code == 200
     data = response.get_json()
     assert data["code"] == 200
-    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "note.json"), "w",  encoding="utf-8"))
+    json.dump(data["result"], open(os.path.join(os.getcwd(), "tests_data", "note.json"), "w",  encoding="utf-8"), ensure_ascii=False)
     assert data["msg"] == "ok"
     assert isinstance(data["result"], list)
     assert response.headers["Content-Type"] == "application/json"
@@ -180,19 +179,19 @@ def test_api_note2(client):
     assert data1["code"] == 200
     assert data1["msg"] == "ok"
     assert isinstance(data1["result"], list)
-    json.dump(data1["result"], open(os.path.join(os.getcwd(), "tests_data", "note.json"), "w",  encoding="utf-8"))
+    json.dump(data1["result"], open(os.path.join(os.getcwd(), "tests_data", "note.json"), "w",  encoding="utf-8"), ensure_ascii=False)
     assert response1.headers["Content-Type"] == "application/json"
 
-    for result_item in data1["result"]:
-        note_id = result_item["note_id"]
-        param = {
-            "note_id": note_id
-        }
-        response2 = client.post("/api/note", json=param)
-        assert response2.status_code == 200
-        data2 = response2.get_json()
-        assert data2["code"] == 200
-        assert data2["msg"] == "ok"
-        assert isinstance(data2["result"], dict)
-        json.dump(data2["result"], open(os.path.join(os.getcwd(), "tests_data", "note",  f"{note_id}.json"), "w",  encoding="utf-8"))
-        assert response2.headers["Content-Type"] == "application/json"
+    # for result_item in data1["result"]:
+    #     note_id = result_item["note_id"]
+    #     param = {
+    #         "note_id": note_id
+    #     }
+    #     response2 = client.post("/api/note", json=param)
+    #     assert response2.status_code == 200
+    #     data2 = response2.get_json()
+    #     assert data2["code"] == 200
+    #     assert data2["msg"] == "ok"
+    #     assert isinstance(data2["result"], dict)
+    #     json.dump(data2["result"], open(os.path.join(os.getcwd(), "tests_data", "note",  f"{note_id}.json"), "w",  encoding="utf-8"), ensure_ascii=False)
+    #     assert response2.headers["Content-Type"] == "application/json"

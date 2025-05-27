@@ -392,7 +392,7 @@ def get_note():
     if isinstance(note_result, list):
         full_note_result = list()
         for note_result_item in note_result:
-            full_note_result.append(get_full_note(note_db_session, note_result_item, is_get_category=True, is_get_tags=True, is_get_files=True, is_get_content=False, is_get_comment=False))
+            full_note_result.append(get_full_note(note_db_session, note_result_item, is_get_category=True, is_get_tags=True, is_get_files=True, is_get_content=True, is_get_comment=True))
         note_result = full_note_result
     else:
         note_result = get_full_note(note_db_session, note_result, is_get_category=True, is_get_tags=True, is_get_files=True, is_get_content=True, is_get_comment=True)
